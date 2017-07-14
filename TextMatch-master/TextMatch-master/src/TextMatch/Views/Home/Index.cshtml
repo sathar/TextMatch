@@ -1,0 +1,44 @@
+﻿@using TextMatch.Models
+@model TextMatchViewModel
+@{
+    ViewBag.Title = "Text Match";
+}
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Enter a Text and SubText and click the Find Matches Button.</h4>
+                <hr/>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Output, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.DisplayFor(m => m.Output, new {@class = "form-control",})
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Text, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => m.Text, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Text, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SubText, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.SubText, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.SubText, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Find Matches" class="btn btn-default"/>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
